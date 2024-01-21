@@ -1,0 +1,21 @@
+namespace EmbDmn.Protocol;
+
+enum MsgType:byte { Connect, Ping, Pong, RequestDeviceInfo, RespondDeviceInfo, Disconnect, CloseDaemon }
+
+table DeviceInfo {
+  name:string;
+  version:string;
+  serialnumber:string;
+  description:string;
+}
+
+union Data {
+  deviceinfo: DeviceInfo
+}
+
+table Frame {
+  msgtype: MsgType;
+  data: Data;
+}
+
+root_type Frame;
